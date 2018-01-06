@@ -95,7 +95,7 @@ class Graph {
       // Points Positions ==> Equations From Wiki Page
       this.x = this.R  * (((1 - k) * Math.cos(t)) + ((l * k) * Math.cos(ang)));
       this.y = this.R  * (((1 - k) * Math.sin(t)) + ((l * k) * Math.sin(ang)));
-      stroke(42,204,113);
+      stroke(109,204,63);
       line(this.prevX,this.prevY,this.x,this.y);
       pop();
       this.step += speedForce;
