@@ -16,15 +16,19 @@ let speedForce = 8;
 let resetBtn;
 
 function setup() {
-createCanvas(400,400);
+createCanvas(600,600);
 background(255);
 
 
 
-graphs.push(new Graph(width / 2, height / 2));
+resetBtn = createButton('reset');
 
 
-resetBtn = select('#reset');
+graphs.push(new Graph(300, 100));
+graphs.push(new Graph(300, 300));
+graphs.push(new Graph(300, 500));
+
+
 
 resetBtn.mouseClicked(reset);
 
@@ -33,8 +37,9 @@ resetBtn.mouseClicked(reset);
 
 function draw() {
 
-graphs[0].display();
-
+graphs.forEach(single => {
+  single.display();
+})
 
 }
 
@@ -48,8 +53,11 @@ graphs[0].display();
 function reset() {
   background(255);
   graphs = [];
-  graphs.push(new Graph(width / 2, height / 2));
-  
+  graphs.push(new Graph(300, 100));
+  graphs.push(new Graph(300, 300));
+  graphs.push(new Graph(300, 500));
+  // graphs.push(new Graph(width / 2, height / 2));
+
 
 
 }
@@ -95,7 +103,7 @@ class Graph {
       // Points Positions ==> Equations From Wiki Page
       this.x = this.R  * (((1 - k) * Math.cos(t)) + ((l * k) * Math.cos(ang)));
       this.y = this.R  * (((1 - k) * Math.sin(t)) + ((l * k) * Math.sin(ang)));
-      stroke(109,204,63);
+      stroke((this.translationX + this.translationY) % 360,180,150);
       line(this.prevX,this.prevY,this.x,this.y);
       pop();
       this.step += speedForce;
